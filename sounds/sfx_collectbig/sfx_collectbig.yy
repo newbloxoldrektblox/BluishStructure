@@ -10,7 +10,7 @@
   "compression":2,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":3.9260318,
+  "duration":3.9111667,
   "exportDir":"",
   "name":"sfx_collectbig",
   "parent":{
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":48000,
-  "soundFile":"sfx_collectbig.ogg",
+  "soundFile":"sfx_collectbig.wav",
   "volume":1.0,
 }

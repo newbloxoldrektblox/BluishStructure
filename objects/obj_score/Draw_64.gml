@@ -34,9 +34,6 @@ var text_offsets = [0, 1, 1, 1, 0, -1, -2, -3, -5, -2, -1, 0]
 
 var text_offset = text_offsets[image_index]
 
-for (var i = 0; i < min(rank_ix, 4); i++)
-	draw_sprite(spr_pizzascore_toppings, i, x, y + text_offset)
-
 draw_set_font(global.scorefont)
 draw_reset_color()
 

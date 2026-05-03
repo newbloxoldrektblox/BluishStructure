@@ -7,8 +7,6 @@ var text_offsets = [0, 1, 1, 1, 0, -1, -2, -3, -5, -2, -1, 0]
 var text_offset = text_offsets[image_index]
 
 draw_sprite(spr_pizzascore, image_index, x, y)
-for (var i = 0; i < min(rank_ix, 4); i++)
-	draw_sprite(spr_pizzascore_toppings, i, x, y + text_offset)
 
 var str = string(number)
 var num = string_length(str)
