@@ -2,28 +2,14 @@
 // TODO: helper function?
 
 if !pausestopframe
-{
-	if !IS_DEBUG || !obj_shell.isOpen
-	{
-		input.left.update(global.keybinds.left);
-		input.right.update(global.keybinds.right);
-		input.up.update(global.keybinds.up);
-		input.down.update(global.keybinds.down);
-		input.jump.update(global.keybinds.jump);
-		input.grab.update(global.keybinds.grab);
-		input.dash.update(global.keybinds.dash);
-		input.taunt.update(global.keybinds.taunt);
-		input.superjump.update(global.keybinds.superjump);
-		input.groundpound.update(global.keybinds.groundpound);
-	}
-	
+{	
 	input_buffers.grab = max(input_buffers.grab - 1, 0)
 	input_buffers.jump = max(input_buffers.jump - 1, 0)
 
-	if input.grab.pressed
+	if input_check_pressed(INPUTS.grab)
 		input_buffers.grab = 15
 	
-	if input.jump.pressed
+	if input_check_pressed(INPUTS.jump)
 		input_buffers.jump = 15
 }
 else
@@ -33,7 +19,6 @@ struct_foreach(aftimg_timers, function(_name, _data)
 {
 	_data.do_it = false
 })
-
 
 if grounded
 	coyote_time = 10
@@ -53,7 +38,9 @@ if hitstun < 0
 else if hitstun >= 0
 {
 	hitstun--
-	image_index = prev_ix
+	image_speed = 0
+	if hitstun == -1
+		image_speed = prev_image_speed
 }
 
 if (state != states.normal)
@@ -72,13 +59,13 @@ winding = clamp(winding + _windincrease, 0, 2000)
 
 if coyote_time > 0
 	coyote_time--
-	
+
 if flash > 0
 	flash--
-	
+
 if (state != states.jump && state != states.taunt)
 	fallingtimer = 0
-	
+
 if (idletimer > 0 && state == states.normal)
 	idletimer--
 
@@ -94,7 +81,7 @@ else
 grav = 0.5
 if state == states.ladder
 	grav = 0
-	
+
 if (y > room_height + 300 || y < -800) && state != states.actor && state != states.backtohub
 {
 	shake_camera()
